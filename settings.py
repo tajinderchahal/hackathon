@@ -21,8 +21,8 @@ EMAIL_PORT = 587
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-#SITE_URL = "http://tajinderpalsingh.com"
-SITE_URL = "http://cleanindia.com"
+SITE_URL = "http://tajinderpalsingh.com"
+#SITE_URL = "http://cleanindia.com"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&92w)=542)0f5qx!iq&!8s$u5fg3h2p0b4b4qagv($c*2*g3i+'
 
