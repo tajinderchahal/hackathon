@@ -1,5 +1,16 @@
 clean-my-india
 ==============
+This application contains following modules(as of now):
+###1. Login Module: 
+user can login to the application by facebook and google social login.
+
+###2. Create a Spotfix:
+logged in user can create a spotfix by entering the details required to create a spotfix drive.
+
+###3. Join a Spotfix:
+a logged in user can join a Spotfix by search the near active spotfix created by other users.
+
+
 =======
 The Challenge - Clean India
 ============================
