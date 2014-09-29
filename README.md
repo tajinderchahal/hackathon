@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 clean-my-india
 ==============
 =======
@@ -111,11 +110,5 @@ Create a github page and send it as a pull request telling us about how you can 
 Github is a version control and collaboration platform for projects, mostly projects that involve code but can also be used for documents and even sharing and collaborating on 3D models. To start with github register on https://github.com/ and, [Fork the hackathon Repository](https://help.github.com/articles/fork-a-repo) by hitting the fork button on [the repo](https://github.com/indiarising/hackathon). Then [create a new file](https://github.com/blog/1327-creating-files-on-github) adding whatever you want to it. You can add images, links and pretty much anything when you create the page. Read more [here](https://github.com/blog/1327-creating-files-on-github). Then [submit a Pull Request](https://help.github.com/articles/using-pull-requests) to our repository. 
 
 
-
-
-
 ### For any questions email *indiarisingtech@gmail.com* 
 
-
-
->>>>>>> f19366c949e9baff64a3295d5f2361342cbb163f
