@@ -13,9 +13,6 @@ urlpatterns = patterns('',
     url(r'^spotfix/create/new/$', 'clean_india.views.create_spotfix'),
     url(r'^join_spotfix$', 'clean_india.views.join_spotfix'),
     url(r'^spotfix/join$', 'clean_india.views.spotfix_join_page'),
-    
-
-
-    url(r'^signup$', 'clean_india.views.signup_page'),
+    url(r'^accounts/login/$', 'clean_india.views.signup_page'),
     url(r'^auth/', include('Auth.urls')),
 )

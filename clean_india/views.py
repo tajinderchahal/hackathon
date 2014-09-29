@@ -11,6 +11,7 @@ import math
 import json
 from Auth.models import UserProfile
 from django.db.models import F
+from django.contrib.auth.decorators import login_required
 
 
 def landing_page(request):
@@ -21,11 +22,12 @@ def signup_page(request):
     return render_to_response('login_page.jade',
     context_instance=RequestContext(request))
  
+@login_required
 def create_spotfix_page(request):
     return render_to_response('create_spotfix.jade',
     context_instance=RequestContext(request))
 
-
+@login_required
 def create_spotfix(request):
     try:
         spot_image = request.FILES['spot_image']
@@ -100,14 +102,14 @@ def get_spotfix(request):
         'image_dict': image_dict
     }, cls=DjangoJSONEncoder))
 
-
-
+@login_required
 def spotfix_join_page(request, spotfix_id):
     return render_to_response('spotfix_page.jade',
       {'spotfix_id': spotfix_id}, 
       context_instance=RequestContext(request))
 
 
+@login_required
 def join_spotfix(request):
     try:
         jsf = JoinedSpotFix.objects.filter(user_id = request.user.id)
