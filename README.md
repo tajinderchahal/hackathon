@@ -1,15 +1,35 @@
 clean-my-india
 ==============
+Technology used:
+Python (backend language)
+Django (Framework) 
+Postgres sql (database)
+Jquery 
+HTML5
+CSS3
+
+Nightly build is running live at [www.tajinderpalsingh.com](http://tajinderpalsingh.com)
+
 This application contains following modules(as of now):
 ###1. Login Module: 
 user can login to the application by facebook and google social login.
 
-###2. Create a Spotfix:
+###2. Create Spotfix:
 logged in user can create a spotfix by entering the details required to create a spotfix drive.
 
-###3. Join a Spotfix:
+###3. Join Spotfix:
 a logged in user can join a Spotfix by search the near active spotfix created by other users.
 
+###4. Sharing Spotfix:
+a logged in user can share the spotfix link on facebook
+
+
+Features to be introduced:
+1. Ending of a spotfix after completion
+2. User profiling (which include the contribution)
+3. SpotFix dedicative page (for joining and sharing the act on facebook)
+4. Attendance (if required)
+5. API documentation (with documentation)
 
 =======
 The Challenge - Clean India
