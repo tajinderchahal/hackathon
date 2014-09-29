@@ -1,5 +1,5 @@
 """
-Django settings for clean_india project.
+Django settings for clickmyday project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -12,19 +12,40 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'swachbharat2014@gmail.com'
+EMAIL_HOST_PASSWORD = 'tajinder@cleanindia'
+EMAIL_PORT = 587
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
+#SITE_URL = "http://tajinderpalsingh.com"
+SITE_URL = "http://cleanindia.com"
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c6+5vl-yrh@y^-54h#hcg)*z575p)pe9%knwhtaz_cmy+#!zgp'
+SECRET_KEY = '&92w)=542)0f5qx!iq&!8s$u5fg3h2p0b4b4qagv($c*2*g3i+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#ALLOWED_HOSTS = ['.clickmyday.com',]
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+TEMPLATE_DIRS = (
+    BASE_DIR + '/clean_india/templates/',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth'
+)
+TEMPLATE_LOADERS = (
+    ('pyjade.ext.django.Loader',(
+           'django.template.loaders.filesystem.Loader',
+           'django.template.loaders.app_directories.Loader',
+    )),
+)
 
 
 # Application definition
@@ -36,20 +57,21 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'clean_india',
+    'Auth',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'clean_india.urls'
+ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'clean_india.wsgi.application'
+#WSGI_APPLICATION = 'api_docs.wsgi.application'
 
 
 # Database
@@ -57,9 +79,13 @@ WSGI_APPLICATION = 'clean_india.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'clean_india',
+        'USER': 'clean_indian',
+        'PASSWORD': 'clean_india',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    },
 }
 
 # Internationalization
@@ -80,3 +106,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.getcwd(),
+)
+
+# ======== TESTING =======
+GOOGLE_CLIENT_ID = '299708147881-fpmajgj8tbhvn8ngmngkfss7ol92sf5u.apps.googleusercontent.com'
+GOOGLE_CLIENT_SECRET = 'LJ-4muvJ3VIHIoECBU4FR6on'
+
+FACEBOOK_APP_ID = '295847137276883'
+FACEBOOK_APP_SECRET = 'd3686142603562b7d7adff4bb40b2c22'
+FACEBOOK_APP_SCOPE = 'email'
+
+
+CACHE_TIME_TO_LIVE = 2592000

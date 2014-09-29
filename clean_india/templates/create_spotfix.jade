@@ -1,0 +1,78 @@
+extends "layout.jade"
+
+block append css
+  style.
+    .uploaded_picture{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;background: #fff;}
+    .uploaded_picture .image_container{ height: 100%;background-size: cover !important;background-position: center !important;}
+
+block append js
+  script(src="/static/js/google_map_function.js")
+  script(src="/static/js/create_spotfix.js")
+
+block append content
+  .row
+    .col-md-12.create_block
+      .rubix-panel-container
+        .rubix-panel
+          .rubix-panel-header.bg-green.fg-white(style="margin-bottom:0px;")
+            .container-fluid.rubix-grid
+              .row
+                .col-xs-12: h3 Create a SpotFix
+          .rubix-panel-body(style="padding:10px;")
+            form#spotfix_form(role="form", method="post", enctype="multipart/form-data")
+              .form-group.text-center
+                label Spot Picture:
+                button.btn.btn-primary.icon-fontello-camera.camera_click_btn
+                  span(style="margin-left:5px;") Click a Spot Picture
+                input.hide.camera_pic(type="file", name="spot_image", accept="image/*;capture=camera")
+                div(style="margin:10px 0px;") or
+                button.btn.btn-primary.icon-dripicons-upload.upload_pic_btn
+                  span(style="margin-left:5px;")  Upload a Spot Picture
+                input.hide.upload_pic(type="file", name="spot_image")
+
+                .uploaded_picture.hide
+                  span.close_image.icon-simple-line-icons-close.pull-right.close(data-dismiss="uploaded_picture", style="position:relative; top: -10px;")
+                  .image_container
+
+              hr(style="margin-bottom: 5px;")
+              .form-group.text-center
+                label Spot Location: (current location)
+                button.btn.btn-warning.current_location_btn.icon-feather-location-2 
+                 span(style="margin-left:5px;") Get Spot Location
+                input(type="hidden", name="latitude")
+                input(type="hidden", name="longitude")
+
+              .form-group.text-center
+                #map-canvas(style="width: 95%; height: 300px; margin: 0 auto;")
+
+              .form-group.text-center
+                label Address:
+                textarea.form-control(rows=4, name="address", placeholder="Complete Address of the Spot")
+
+              .form-group.text-center
+                label Description:
+                textarea.form-control(rows=4, name="description", placeholder="A breif description about the Spot need to be fixed")
+
+              .form-group.text-center
+                label Start Time: (Date and Time for SpotFixing)
+                  .input-group
+                    .input-group-addon
+                      span.rubix-icon.icon-fontello-calendar-1
+                    input.form-control(type="text", name="starttime", placeholder="Date and Time for Spot Fixing")
+
+              .form-group.text-center
+                label Phone No. (required for coordination amoung the participants)
+                  .input-group
+                    .input-group-addon
+                      span.rubix-icon.icon-fontello-mobile-1
+                    input.form-control(type="text", name="phone_num", placeholder="Your 10 digit Mobile No.", maxlength=10)
+              .form-group.text-center
+                label Minimum no. of people required to do the Spotfixing
+                  .input-group
+                    .input-group-addon
+                      span.rubix-icon.icon-fontello-users-2
+                    input.form-control(type="text", name="min_required", placeholder="Minimun number of people required to clean the spot. Default is taken as 1, if not filled", maxlength=3)
+
+              .form-group.text-center
+                input.btn.btn-lg.btn-success(type="submit", value="Let's fix this spot")
+              

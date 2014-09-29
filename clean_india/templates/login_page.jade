@@ -1,0 +1,24 @@
+extends "layout.jade"
+
+
+block append content
+  .row
+    .col-md-12.create_block
+      .rubix-panel-container
+        .rubix-panel
+          .rubix-panel-header.bg-green.fg-white(style="margin-bottom:0px;")
+            .container-fluid.rubix-grid
+              .row
+                .col-xs-12: h3.text-center Sign In to Clean India 
+          .rubix-panel-body(style="padding:15px;")
+            .text-center(style="margin: 50px 0px;") 
+              a#facebook-btn.btn.btn-lg.btn-darkblue(role='button', href="/auth/facebook",  
+                  style="position: relative;border-radius: 4px;background: #2960B1;text-transform: none;border-color: #2960B1;")
+                span.rubix-icon.icon-fontello-facebook(style="top: 10px;left: 20px;font-size: 28px;position: absolute;vertical-align: top;")
+                span(style="font-size: 18px;padding-left: 20px;position: relative;") Sign in with facebook
+              div(style="margin: 15px 0px; font-size: 18px;") or
+              a#facebook-btn.btn.btn-lg.btn-danger(role='button', href="/auth/google",  
+                  style="position: relative;border-radius: 4px;text-transform: none;")
+                span.rubix-icon.icon-fontello-google(style="top: 10px;left: 20px;font-size: 28px;position: absolute;vertical-align: top;")
+                span(style="font-size: 18px;padding-left: 20px;position: relative;") Sign in with Google
+             

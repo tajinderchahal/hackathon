@@ -1,0 +1,57 @@
+extends "layout.jade"
+
+block append css
+  style.
+    .join_spotfix{position: absolute;width: 100%;height: 100%;top: 0px;left: 0px;background: #fff;}
+
+block append js
+  script(src="/static/js/landing_page.js")
+
+block append content
+  .row
+    .col-md-12.create_block
+      .rubix-panel-container
+        .rubix-panel
+          .rubix-panel-body(style="padding:10px;")
+            h4 Join a Spotfix
+            form#search_spotfix.hide(method="GET")
+              .form-group 
+                .input-group
+                  input.form-control(type="text", name="search_str")
+                  .input-group-addon.plain
+                    button.btn.btn-outlined.btn-onlyOnHover.btn-darkgreen45(type="submit") Search
+            #map-canvas(style="width: 100%; height: 400px;")
+            .join_spotfix.hide
+              .form-group
+                  label Your Contact No.: (required for coordination)
+                    .input-group
+                      .input-group-addon
+                        span.rubix-icon.icon-fontello-mobile-1
+                      input.form-control(type="text", name="phone_num", placeholder="Your 10 digit Mobile No.", maxlength=10) 
+
+              .photo_block
+              br
+              .details
+                .form-group
+                  label Address:
+                  .address
+                .form-group
+                  label Description:
+                  .description
+                .form-group
+                  label Start Time:
+                  .starttime
+                .form-group
+                  label Total no. of people participating yet:
+                  .no_of_participants
+                .form-group
+                  label Minimum people required for SpotFix:
+                  .min_required
+                .form-group
+                  label Initiator of this SpotFix:
+                  .creator_name
+                .form-group
+                  label Contact No. of initiator:
+                  .phone_num
+                .sfid.hide
+                
