@@ -2,11 +2,13 @@ function showLocation(position) {
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
   current_loc_marker(latitude, longitude);
+  get_address(latitude, longitude);
 }
 
 function errorHandler(err) {
+  console.log(err);
   if(err.code == 1) {
-    alert("Error: Access is denied!");
+    alert("Error: Geo loction access is denied!");
   } else if( err.code == 2) {
     alert("Error: Position is unavailable!");
   }
@@ -20,6 +22,15 @@ function getLocation(){
    } else {
       alert("Sorry, browser does not support geolocation!");
    }
+}
+
+function get_address(lat, lng){
+  //$.getJSON('//maps.googleapis.com/maps/api/geocode/json', {'latlng': lat+','+lng, 'sensor': true},
+  console.log('//maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true');
+  $.getJSON('//maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true', {},
+    function(result){
+     console.log(result);
+  });
 }
 
 function show_spotfix_markers(locations) {
@@ -86,6 +97,9 @@ function getspotfix() {
     show_spotfix_markers(result.locations);
     locations = result.locations; 
     location_image = result.image_dict
+    var ard = radius > 1000 ? parseInt(radius)/1000 + ' kms' : parseInt(radius) + ' meters';
+    var str = locations.length ? locations.length +' Spotfix Found in vicinity of ' + ard : 'No Spotfix found in vicinity of ' + ard; 
+    $('.result_stats').html(str);
   });
 }
 
@@ -137,10 +151,10 @@ function fb_share_click(){
   $('.fb_share').click(function(){
     var parent_block = $('.join_spotfix');            
     var sfid = parent_block.find('.sfid').html();
-    var link = 'http://cleanindia.com/spotfix/join/' + sfid;
+    var link = 'http://tajinderpalsingh.com/spotfix/join/' + sfid;
     var title = 'Let\'s Clean this Spot';
     var desc = parent_block.find('.description').html();
-    var picture = 'http://cleanindia.com' + parent_block.find('.photo_block img').attr('src');
+    var picture = 'http://tajinderpalsingh.com' + parent_block.find('.photo_block img').attr('src');
     share_content(link, title, desc, picture, sfid);
   });
 }

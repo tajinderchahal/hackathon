@@ -11,13 +11,13 @@ function current_loc_marker(latitude, longitude) {
   });
   map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
   marker.setMap(map);
-  create_circle(map, myLatlng);
 }
 
 function getspotfix() {
-  $.getJSON('/get_spotfix', {'latitude': latitude, 'longitude': longitude , 'radius': radius}, function(result) {
-    location_image = result.image_dict
-    current_loc_marker(result.locations.latitude, result.locations.longitude);
+  $.getJSON('/spotfix/get_details', {'sf_id': spotfix_id}, function(result) {
+    var spotfix = result.spotfix_details;
+    location_image = result.image_dict;n
+    open_joinspotfix(spotfix);
   });
 }
 
@@ -32,12 +32,9 @@ function open_joinspotfix(loc) {
   $('.details .phone_num').html(loc.user__phone_num);
   $('.details .sfid').html(loc.id);
 
-  open_modal('Join this SpotFix', $('.join_spotfix').html(), 
-    '<button class="fb_share btn btn-facebook icon-fontello-facebook">&nbsp;Share on Facebook</button>&nbsp;&nbsp;' + 
-    '<button id="join_spotfix" class="btn btn-success"> JOIN THIS SPOTFIX </button>');
   fb_share_click();
   $('#join_spotfix').click(function(){
-    $.post('/join_spotfix', {'sf_id': $('.join_spotfix .sfid').html() }, function(result){
+    $.post('/join_spotfix', {'sf_id': spotfix_id }, function(result){
       result = JSON.parse(result);
       if(result['status'] == 1){
         open_modal('Join SpotFix Alert', '<div class="text-success">Successfuly Joined the SpotFix drive</div> <br>' +
@@ -61,10 +58,10 @@ function fb_share_click(){
   $('.fb_share').click(function(){
     var parent_block = $('.join_spotfix');            
     var sfid = parent_block.find('.sfid').html();
-    var link = 'http://cleanindia.com/spotfix/join/' + sfid;
+    var link = 'http://tajinderpalsingh.com/spotfix/join/' + sfid;
     var title = 'Let\'s Clean this Spot';
     var desc = parent_block.find('.description').html();
-    var picture = 'http://cleanindia.com' + parent_block.find('.photo_block img').attr('src');
+    var picture = 'http://tajinderpalsingh.com' + parent_block.find('.photo_block img').attr('src');
     share_content(link, title, desc, picture, sfid);
   });
 }

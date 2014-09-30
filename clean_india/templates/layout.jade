@@ -4,7 +4,8 @@ html.default(lang='en')
     title Clean My India | Lets make India a clean country
     block meta 
       meta(charset='UTF-8')
-      meta(http-equiv="X-UA-Compatible",content="IE=edge")
+      meta(http-equiv="X-UA-Compatible",content="IE=edge") 
+      meta(name="viewport", content="width=device-width, user-scalable=no")
     block css
       //link(rel='stylesheet', href='/static/bootstrap/css/bootstrap.css')
       //link(rel='stylesheet', href='/static/bootstrap/css/bootstrap-responsive.css')
@@ -116,9 +117,9 @@ html.default(lang='en')
       script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIl1Ub2-6ViypEl6sfVCX0GLpA9n4qqiw")
       script.
         function open_modal(title, msg, button){
-          title = title ? title : 'Alert';
-          msg ? msg : '';
-          button = button ? button : '<button type="button" class="close btn btn-primary" data-dismiss="modal">OK</button>';
+          var title = title ? title : 'Alert';
+          var msg = msg ? msg : '';
+          var button = button ? button : '<button type="button" class="close btn btn-primary" data-dismiss="modal">OK</button>';
           $('.modal-title').html(title);
           $('.modal-body').html(msg);
           $('.modal-footer').html(button); 
@@ -148,7 +149,7 @@ html.default(lang='en')
         ga('create', 'UA-55278907-1', 'auto');
         ga('send', 'pageview');
 
-        var share_content = function(shared_link, title, desc, picture, sfid) {
+        function share_content(shared_link, title, desc, picture, sfid) {
           FB.ui({
             method: 'feed',
             link: shared_link,
@@ -163,7 +164,7 @@ html.default(lang='en')
           });
         }
   
-        var share_spotfix_update = function(){
+        function share_spotfix_update(){
           /*$.post('/spotfix/share', {'sf_id': sfid}, function(result){ 
           }); */ 
         }

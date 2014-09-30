@@ -108,6 +108,23 @@ def spotfix_join_page(request, spotfix_id):
       {'spotfix_id': spotfix_id}, 
       context_instance=RequestContext(request))
 
+def get_spotfix_details(request):
+    spotfix_id = int(request.GET['sf_id'])
+    spotfix_list = list(SpotFix.objects.filter(id = spotfix_id).values('address', \
+                        'description', 'starttime', 'participate_no',\
+                        'min_required', 'user__first_name', 'user__last_name',\
+                        'user__phone_num', 'id', 'latitude', 'longitude',\
+                        'status', 'endtime'))
+    spotfix_ids = [int(c['id']) for c in spotfix_list]
+    spotfix_images = SpotFixImages.objects.filter(spotfix__in = spotfix_ids).values()
+    image_dict = {}
+    for img in spotfix_images:
+        image_dict.setdefault(img['spotfix_id'], []).append([img['image'], img['state']])
+    return HttpResponse(json.dumps({
+        'status': 1,
+        'spotfix_details': spotfix_list[0] if len(spotfix_list) else [],
+        'image_dict': image_dict
+    }, cls=DjangoJSONEncoder))
 
 @login_required
 def join_spotfix(request):

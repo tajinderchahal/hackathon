@@ -4,6 +4,7 @@ function showLocation(position) {
   $('input[name="latitude"]').val(latitude);
   $('input[name="longitude"]').val(longitude);
   current_loc_marker(latitude, longitude);
+  get_address(latitude, longitude);
 }
 
 function errorHandler(err) {
@@ -22,6 +23,17 @@ function getLocation(){
    } else {
       alert("Sorry, browser does not support geolocation!");
    }
+}
+
+function get_address(lat, lng){
+  //$.getJSON('//maps.googleapis.com/maps/api/geocode/json', {'latlng': lat+','+lng, 'sensor': true},
+  console.log('//maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true');
+  $.getJSON('//maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true', {},
+    function(result){
+     if(result.status == 'OK'){
+       $('textarea[name="address"]').val( result.results[0].formatted_address );
+     }
+  });
 }
 
 function current_loc_marker(latitude, longitude) {

@@ -5,6 +5,8 @@ block append css
     .join_spotfix{position: absolute;width: 100%;height: 100%;top: 0px;left: 0px;background: #fff;}
 
 block append js
+  script.
+    var spotfix_id = "{{ spotfix_id }}";
   script(src="/static/js/spotfix_page.js")
 
 block append content
@@ -40,6 +42,14 @@ block append content
                 .form-group
                   label Contact No. of initiator:
                   .phone_num
+                .form-group
+                  label Your Contact No.: (required for coordination)
+                    .input-group
+                      .input-group-addon
+                        span.rubix-icon.icon-fontello-mobile-1
+                      input.form-control(type="text", name="phone_num", placeholder="Your 10 digit Mobile No.", maxlength=10)                
+                .form-group
+                  button#join_spotfix.btn.btn-success JOIN THIS SPOTFIX 
                 .sfid.hide
                 
                 
