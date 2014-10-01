@@ -9,13 +9,13 @@ function showLocation(position) {
 
 function errorHandler(err) {
   if(err.code == 1) {
-    alert("Error: Access is denied!");
+    alert("Error: Geo location access is denied!");
   } else if( err.code == 2) {
     alert("Error: Position is unavailable!");
   }
 }
 
-function getLocation(){
+function getLocation() {
    if(navigator.geolocation){
       // timeout at 60000 milliseconds (60 seconds)
       var options = { timeout:60000 };
@@ -45,7 +45,7 @@ function current_loc_marker(latitude, longitude) {
   marker = new google.maps.Marker({
     position: myLatlng,
     title:"My Current Location",
-    //icon: "/static/image/green-pin.png"
+    icon: "/static/image/ongoing.png"
   });
   map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
   marker.setMap(map);
@@ -116,10 +116,11 @@ $(document).ready(function(){
         success: function (data) {
           data = JSON.parse(data);
           if(data['status']){
-            $('input, textarea').val('');
+            $('input[type="text"], input[type="file"],input[type="hidden"], textarea').val('');
+            $('.uploaded_picture').addClass('hide');
             open_modal('Spotfix Alert', 
               '<div class="text-success">Successfuly created</div> <br>' + 
-              '<div class="text-center"><button class="btn btn-darkblue icon-fontello-facebook">' + 
+              '<div class="text-center"><button class="fb_share btn btn-darkblue icon-fontello-facebook">' + 
               ' &nbsp;Share on Facebook </button> </div>', '');
           } else {
             open_modal('Spotfix Alert', '<div class="text-danger"> Error while creating SpotFix</div>', '');

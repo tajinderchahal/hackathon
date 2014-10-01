@@ -1,0 +1,22 @@
+extends "layout.jade"
+
+
+block append content
+  .row
+    .col-md-12.create_block
+      .rubix-panel-container
+        .rubix-panel
+          .rubix-panel-header.bg-green.fg-white(style="margin-bottom:0px;")
+            .container-fluid.rubix-grid
+              .row
+                .col-xs-12: h3 Basic Profile
+          .rubix-panel-body(style="padding: 12px;")
+              .profile_data.text-center
+                div.text-center
+                  img.img-circle(src="{{ udata.profile_image }}", width="100")
+                h4.text-center {{ udata.first_name}} {{ udata.last_name }}
+                label No. of SpotFix Created:
+                span: a(href="/spotfix/created/{{ udata.id }}") {{ udata.spotfix_created }}
+                label No. of SpotFix Joined:
+                span: a(href="/spotfix/joined/{{ udata.id }}") {{ udata.spotfix_attended }}
+            

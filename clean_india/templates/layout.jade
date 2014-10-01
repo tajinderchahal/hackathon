@@ -30,7 +30,6 @@ html.default(lang='en')
   body
     #app-container
      #container
-       {% if user.is_authenticated %}
        #sidebar
          #avatar
            .container-fluid.rubix-grid
@@ -57,16 +56,31 @@ html.default(lang='en')
                              a(href='/')
                                span.rubix-icon.icon-fontello-users-1
                                span.name Join a Spotfix
+                           {% if user.is_authenticated %}
+                           li.manage
+                             a(href='#')
+                               span.rubix-icon.icon-stroke-gap-icons-Blog
+                               span.name Manage Spotfix
+                               span.rubix-icon.fontello.icon-fontello-left-open-3.toggle-button
+                             ul.sidebar-nav
+                               li(style='', tabindex='-1', href='/spotfix/created',)
+                                 a(href='/spotfix/created/{{user.id}}', tabindex='-1')
+                                   span.rubix-icon.icon-ikons-notepad-add
+                                   span.name Created Spotfix
+                               li(style='', tabindex='-1', href='/spotfix/joined')
+                                 a(href='/spotfix/joined/{{user.id}}', tabindex='-1')
+                                   span.rubix-icon.icon-ikons-user-ok
+                                   span.name Joined Spotfix
                            li
-                             a(href='/spotfix/create')
+                             a(href='/profile/{{ user.id }}')
                                span.rubix-icon.icon-fontello-user-1
                                span.name My Profile
+                           {% endif %}
 
            .ps-scrollbar-x-rail(style='width: 250px; display: none; left: 0px; bottom: 3px;')
              .ps-scrollbar-x(style='left: 0px; width: 0px;')
            .ps-scrollbar-y-rail(style='top: 0px; height: 573px; display: none; right: 3px;')
              .ps-scrollbar-y(style='top: 0px; height: 0px;')
-       {% endif %}
        #navbar.container-fluid.rubix-grid(style='z-index: 9999469;')
         .row
          .col-xs-12
@@ -81,25 +95,25 @@ html.default(lang='en')
                         a.sidebar-btn(href='#', data-id='sidebar-btn')
                           span.rubix-icon.fontello.icon-fontello-th-list-5
                 {% endif %}
-                .col-xs-6.col-sm-4
+                .col-xs-6.col-sm-6
                   .navbar-header
                     a.navbar-brand(href='/', style="padding-top: 22px; white-space:nowrap") Clean India
                 {% if user.is_authenticated %}
-                .col-xs-3.col-sm-8
+                .col-xs-3.col-sm-6
                   .navbar-content.pull-right
                     ul.nav.navbar-nav
                       li(href='#', title="Logout")
                         a.logout(href='/auth/logout')
                           span.rubix-icon.fontello.icon-fontello-off-1
                 {% else %}
-                .col-xs-6.col-sm-4
-                  .navbar-header
-                    a.navbar-brand(href='/accounts/login', style="padding-top: 22px; white-space:nowrap") Sign In
+                .col-xs-6.col-sm-6
+                  .navbar-header.pull-right
+                    a.navbar-brand.signin_btn.pull-right(href='/accounts/login', style="padding-top: 22px; white-space:nowrap") Sign In
                 {% endif %}
 
-       #body
+       #body(style="padding-top: 5px;")
          #fb-widget
-         .container-fluid
+         .container-fluid(style="padding: 0px 5px;")
            block content
 
 
@@ -124,7 +138,7 @@ html.default(lang='en')
           $('.modal-body').html(msg);
           $('.modal-footer').html(button); 
           $('#open_modal').click();
-        }      
+        };      
         window.fbAsyncInit = function() {
           FB.init({
             appId      : '295847137276883',
@@ -162,11 +176,34 @@ html.default(lang='en')
                share_spotfix_update();
              }
           });
-        }
+        };
   
         function share_spotfix_update(){
           /*$.post('/spotfix/share', {'sf_id': sfid}, function(result){ 
           }); */ 
+        };
+
+      script.
+        var user_id = "{{user.id}}" == "None" ? "" : "{{user.id}}";
+        $(document).ready(function(){
+          $('.manage').click(function(){
+            if($(this).hasClass('open')){
+              $(this).removeClass('open');
+              $(this).find('.toggle-button').removeClass('open');
+            } else {
+              $(this).addClass('open');
+              $(this).find('.toggle-button').addClass('open');
+            }
+          });
+        });
+        function DF(date) {
+          var d = new Date(date);
+          var minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
+          var hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours();
+          var ampm = d.getHours() >= 12 ? 'PM' : 'AM';
+          var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+          return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+'  '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
         }
 
     #blueimp-gallery.blueimp-gallery.blueimp-gallery-controls(style="display: none;")

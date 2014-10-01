@@ -6,7 +6,7 @@ block append css
 block append js
   script.
     var spotfix_id = "{{ spotfix_id }}";
-  script(src="/static/js/spotfix_page.js")
+  script(src="/static/js/report_spotfix_page.js")
 
 block append content
   .row
@@ -14,15 +14,14 @@ block append content
       .rubix-panel-container
         .rubix-panel
           .rubix-panel-body(style="padding:10px;")
-            h4.title Join this Spotfix
-            .join_spotfix
-              .form-group
-                label Title:
-                .name
-
-              label Spot Picture: <a class="gallery_link" href="">(Show more images)</a>
+            h4.text-center Report this Spotfix
+            form#report_spotfix_form.join_spotfix(role="form", method="post", enctype="multipart/form-data")
+              label Spot Picture (Before):
               .photo_block.text-center
               br
+              label Upload SpotFix Pictures: (upload multiple pictures at once)
+                input.upload_pic(type="file", name="spotfix_image", accept="image/*", multiple)               
+                input(type="hidden", name="sf_id", value="{{ spotfix_id }}") 
               .details
                 label Spot Location
                 #map-canvas(style="width: 100%; height: 250px;")
@@ -35,9 +34,6 @@ block append content
                 .form-group
                   label Start Time:
                   .starttime
-                .form-group.endtime.hide
-                  label Ended On:
-                  .data
                 .form-group
                   label Total no. of people participating yet:
                   .no_of_participants
@@ -50,23 +46,28 @@ block append content
                 .form-group
                   label Contact No. of initiator:
                   .phone_num
-                .form-group.joinee_contact
+                .form-group
                   label Your Contact No.: (required for coordination)
                     .input-group
                       .input-group-addon
                         span.rubix-icon.icon-fontello-mobile-1
-                      input.form-control(type="text", name="phone_num", placeholder="Your 10 digit Mobile No.", maxlength=10)               
+                      input.form-control(type="text", name="phone_num", placeholder="Your 10 digit Mobile No.", maxlength=10, value="{{user.userprofile.phone_num}}")              
+                .form-group
+                  label End Time:
+                    .input-group
+                      .input-group-addon
+                        span.rubix-icon.icon-fontello-calendar-1
+                      input.form-control(type="text", name="endtime", placeholder="Spotfix ended on ?", readonly) 
+
                 .form-group
                   label 
                     | Participants: 
                     a.see_plist(href="#") (see list)
                   .participants_list.hide
                 .form-group.action.text-center
-                  button#join_spotfix.btn.btn-success JOIN THIS SPOTFIX
+                  input#report_spotfix.btn.btn-success(type="submit", value="REPORT THIS SPOTFIX")
+                  
                 .form-group.action-fb.text-center
                   button.fb_share.btn.btn-facebook &nbsp;Share on Facebook
-                .form-group.text-center.report
-                  a.btn.btn-outlined.btn-warning(role="button", href="/spotfix/report") Report Spotfix
-                .sfid.hide
                 
                 

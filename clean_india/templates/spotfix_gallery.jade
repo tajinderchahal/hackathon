@@ -1,0 +1,10 @@
+extends "layout.jade"
+
+block append js
+  script.
+    var spotfix_id = "{{ spotfix_id }}";
+  script(src="/static/js/spotfix_gallery.js")
+
+block append content
+  .row
+    .col-md-12.gallery_block

@@ -21,6 +21,9 @@ block append content
           .rubix-panel-body(style="padding:10px;")
             form#spotfix_form(role="form", method="post", enctype="multipart/form-data")
               .form-group.text-center
+                label Title:
+                input.form-control(type="text", name="title", placeholder="Title for Spotfix") 
+              .form-group.text-center
                 label Spot Picture:
                 button.btn.btn-primary.icon-fontello-camera.camera_click_btn
                   span(style="margin-left:5px;") Click a Spot Picture
@@ -36,7 +39,7 @@ block append content
 
               hr(style="margin-bottom: 5px;")
               .form-group.text-center
-                label Spot Location: (current location)
+                label Spot Location: (your current location)
                 button.btn.btn-warning.current_location_btn.icon-feather-location-2 
                  span(style="margin-left:5px;") Get Spot Location
                 input(type="hidden", name="latitude")
@@ -47,11 +50,11 @@ block append content
 
               .form-group.text-center
                 label Address:
-                textarea.form-control(rows=4, name="address", placeholder="Complete Address of the Spot")
+                textarea.form-control(rows=3, name="address", placeholder="Complete Address of the Spot")
 
               .form-group.text-center
                 label Description:
-                textarea.form-control(rows=4, name="description", placeholder="A breif description about the Spot need to be fixed")
+                textarea.form-control(rows=3, name="description", placeholder="A breif description about the Spot need to be fixed")
 
               .form-group.text-center
                 label Start Time: (Date and Time for SpotFixing)
@@ -64,7 +67,7 @@ block append content
                 label Phone No. (required for coordination amoung the participants)
                   .input-group
                     .input-group-addon
-                      span.rubix-icon.icon-fontello-mobile-1
+                      span.rubix-icon.icon-fontello-mobile
                     input.form-control(type="text", name="phone_num", placeholder="Your 10 digit Mobile No.", maxlength=10)
               .form-group.text-center
                 label Minimum no. of people required to do the Spotfixing

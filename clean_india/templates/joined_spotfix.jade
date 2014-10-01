@@ -1,0 +1,15 @@
+extends "layout.jade"
+
+block append js
+  script.
+    var spuser_id = {{ user_id }};
+    $(document).ready(function(){
+      get_spotfix('joined_list');
+    });
+  script(src="/static/js/spotfix_created.js");
+
+block append content
+  .row
+     h4.text-center Joined SpotFix
+     .col-md-12.spotfix_block
+     

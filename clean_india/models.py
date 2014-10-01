@@ -5,7 +5,7 @@ from Auth.models import UserProfile
 
 
 class SpotFix(models.Model):
-    user = models.ForeignKey(UserProfile, null=True, blank=True)
+    user = models.ForeignKey(UserProfile, null=True, blank=True, related_name="created_user")
     name = models.TextField(null=True, blank=True)
     starttime = models.DateTimeField(null=True, blank=True)
     endtime = models.DateTimeField(null=True, blank=True)
@@ -18,6 +18,7 @@ class SpotFix(models.Model):
     remarks = models.TextField(null=True, blank=True)
     min_required = models.IntegerField(default=1)
     created_on = models.DateTimeField(auto_now=True)
+    reported_user = models.ForeignKey(UserProfile, null=True, blank=True, related_name="reported_user")
 
 
 class SpotFixImages(models.Model):

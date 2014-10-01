@@ -3,6 +3,7 @@ extends "layout.jade"
 block append css
   style.
     .join_spotfix{position: absolute;width: 100%;height: 100%;top: 0px;left: 0px;background: #fff;}
+    .modal-footer div{ margin-bottom: 5px; }
 
 block append js
   script(src="/static/js/landing_page.js")
@@ -25,12 +26,17 @@ block append content
             #map-canvas(style="width: 100%; height: 400px;")
             .join_spotfix.hide
               .form-group
+                label Title:
+                .title
+
+              .form-group.joinee_contact
                   label Your Contact No.: (required for coordination)
                     .input-group
                       .input-group-addon
                         span.rubix-icon.icon-fontello-mobile-1
                       input.form-control(type="text", name="phone_num", placeholder="Your 10 digit Mobile No.", maxlength=10) 
-
+                  span.data
+              label Spot Picture: <a class="gallery_link" href="">(Show more images)</a>
               .photo_block
               br
               .details
@@ -43,6 +49,9 @@ block append content
                 .form-group
                   label Start Time:
                   .starttime
+                .form-group.endtime.hide
+                  label Ended On:
+                  .data
                 .form-group
                   label Total no. of people participating yet:
                   .no_of_participants
