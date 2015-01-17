@@ -8,7 +8,7 @@ Jquery
 HTML5
 CSS3
 
-Nightly build is running live at [www.tajinderpalsingh.com](http://tajinderpalsingh.com)
+Nightly build is running live at [cleanmyindia.herokuapp.com](http://cleanmyindia.herokuapp.com)
 
 This application contains following modules(as of now):
 ###1. Login Module: 
